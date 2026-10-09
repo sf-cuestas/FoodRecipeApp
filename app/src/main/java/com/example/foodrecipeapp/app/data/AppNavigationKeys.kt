@@ -1,20 +1,20 @@
 package com.example.foodrecipeapp.app.data
 
+import androidx.annotation.DrawableRes
 import androidx.navigation3.runtime.NavKey
+import com.example.foodrecipeapp.R
 import kotlinx.serialization.Serializable
 
 enum class MainTab {
     HOME, SEARCH, PROFILE;
 
-//    @DrawableRes
-//    var icon = get()when () {
-//        HOME -> R.drawable.ic_home,
-//        SEARCH -> R.drawable.outline_search_24
-//
-//            ,
-//        PROFILE -> R.drawable.ic_profile
-//
-//    }
+    @get:DrawableRes
+    val iconResource: Int
+        get() = when (this) {
+            HOME -> R.drawable.ic_home
+            SEARCH -> R.drawable.outline_search_24
+            PROFILE -> R.drawable.ic_profile
+        }
 }
 
 @Serializable

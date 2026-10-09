@@ -58,7 +58,7 @@ fun FoodAppMain() {
                         onClick = { selectedTab = entry },
                         icon = {
                             Icon(
-                                painter = painterResource(R.drawable.ic_home),
+                                painter = painterResource(entry.iconResource),
                                 contentDescription = null
                             )
                         },

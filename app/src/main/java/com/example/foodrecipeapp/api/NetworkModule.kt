@@ -9,7 +9,7 @@ val NetworkModule = module {
     single {
         OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
-            //.addInterceptor(HeaderInterceptor())
+            .addInterceptor(HeaderInterceptor())
             .build()
     }
     single<Retrofit> {
