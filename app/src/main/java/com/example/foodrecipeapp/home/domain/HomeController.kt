@@ -1,4 +1,4 @@
-package com.example.foodrecipeapp.home
+package com.example.foodrecipeapp.home.domain
 
 import com.example.foodrecipeapp.home.data.HomeRepository
 

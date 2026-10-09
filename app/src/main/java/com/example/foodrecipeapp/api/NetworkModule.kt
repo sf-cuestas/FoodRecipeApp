@@ -9,12 +9,13 @@ val NetworkModule = module {
     single {
         OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
+            //.addInterceptor(HeaderInterceptor())
             .build()
     }
     single<Retrofit> {
         Retrofit.Builder()
             .client(get())
-            .baseUrl("https://pokeapi.co/api/v2/")
+            .baseUrl("https://platform.fatsecret.com/rest/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

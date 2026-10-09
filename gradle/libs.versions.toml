@@ -11,6 +11,9 @@ kotlin = "2.4.20"
 composeBom = "2026.09.00"
 retrofit = "3.0.0"
 koin-bom = "4.2.2"
+navigation3Runtime = "1.2.0"
+navigation3Ui = "1.2.0"
+kotlinxSerializationJson = "1.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +41,11 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
 koin-test = { module = "io.insert-koin:koin-test" }
+
+androidx-compose-material3-adaptive-navigation-suite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite" }
+androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime" , version.ref = "navigation3Runtime" }
+androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3Ui" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json" ,  version.ref = "kotlinxSerializationJson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
