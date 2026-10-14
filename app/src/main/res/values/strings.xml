@@ -5,5 +5,6 @@
     <string name="home_recipe_calorie">%1$d kcal</string>
     <string name="home_recipe_card_author">Chef %1$s</string>
     <string name="home_recipe_card_preparation_time">%1$d min</string>
+    <string name="home_title">What are we cooking today, %1$s?</string>
     //end
 </resources>

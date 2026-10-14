@@ -5,6 +5,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.home.components.BigFoodCard
 import com.example.foodrecipeapp.home.components.MediumFoodCard
 import com.example.foodrecipeapp.home.components.SmallFoodCard
@@ -17,7 +19,11 @@ fun HomePage(
     homeViewModel: HomeViewModel = koinViewModel(),
     navigateTo: (id: String) -> Unit,
 ) {
+
     LazyColumn {
+        item {
+            Text(stringResource(R.string.home_title, "Felipe"))
+        }
         item {
             BigFoodCard("Marco")
         }

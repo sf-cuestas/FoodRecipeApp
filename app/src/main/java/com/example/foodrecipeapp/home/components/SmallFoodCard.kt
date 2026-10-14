@@ -16,8 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
+import com.example.foodrecipeapp.ui.theme.Padding
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable

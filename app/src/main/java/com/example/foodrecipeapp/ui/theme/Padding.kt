@@ -1,8 +1,8 @@
-package com.example.foodrecipeapp.app
+package com.example.foodrecipeapp.ui.theme
 
 import androidx.compose.ui.unit.dp
 
-data object Padding{
+object Padding{
     val xs = 2.dp
     val s = 4.dp
     val m = 10.dp

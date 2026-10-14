@@ -12,9 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
-import com.example.foodrecipeapp.ui.theme.Neutral
+import com.example.foodrecipeapp.ui.theme.ColorTheme
+import com.example.foodrecipeapp.ui.theme.Padding
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 
 @Composable
 fun GeneralRecipeInfo(
@@ -35,28 +35,28 @@ fun GeneralRecipeInfo(
         Text(
             modifier = Modifier.padding(start = Padding.s, end = Padding.m),
             text = rating.toString(),
-            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
+            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
         )
         Text(
             modifier = Modifier.padding(horizontal = Padding.m),
             text = "•",
-            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
+            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
         )
         Icon(
             modifier = Modifier.padding(start = Padding.xs, end = Padding.s),
             painter = painterResource(R.drawable.ic_cookin_skill),
-            tint = Neutral,
+            tint = ColorTheme.Neutral,
             contentDescription = null
         )
-        Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
+        Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral))
         Text(
             modifier = Modifier.padding(horizontal = Padding.m),
             text = "•",
-            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
+            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
         )
         Text(
             stringResource(R.string.home_recipe_calorie, calories),
-            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
+            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
         )
     }
 }

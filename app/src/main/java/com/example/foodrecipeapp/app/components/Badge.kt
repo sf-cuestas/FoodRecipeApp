@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.foodrecipeapp.app.Padding
+import com.example.foodrecipeapp.ui.theme.ColorTheme
+import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
-import com.example.foodrecipeapp.ui.theme.MainBackground
 
 @Composable
 fun Badge(modifier: Modifier = Modifier, text: String, backgroundColor: Color) {
@@ -37,6 +37,6 @@ fun Badge(modifier: Modifier = Modifier, text: String, backgroundColor: Color) {
 @Composable
 private fun BadgePreview() {
     FoodRecipeAppTheme {
-        Badge(text = "35 minutes", backgroundColor = MainBackground)
+        Badge(text = "35 minutes", backgroundColor = ColorTheme.MainBackground)
     }
 }

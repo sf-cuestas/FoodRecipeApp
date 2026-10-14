@@ -19,11 +19,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
+import com.example.foodrecipeapp.ui.theme.Padding
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.app.components.Badge
 import com.example.foodrecipeapp.app.components.SaveButton
-import com.example.foodrecipeapp.ui.theme.MainBackground
+import com.example.foodrecipeapp.ui.theme.ColorTheme
 
 @Composable
 fun FoodCardBackground(
@@ -50,7 +50,7 @@ fun FoodCardBackground(
             preparationTime?.let {
                 Badge(
                     text = stringResource(R.string.home_recipe_card_preparation_time, it),
-                    backgroundColor = MainBackground
+                    backgroundColor = ColorTheme.MainBackground
                 )
             }
             if (showSaveButton){
