@@ -16,7 +16,7 @@ fun HomePage(
     navigateTo: (id: String) -> Unit,
 ) {
     Column() {
-        BigFoodCard()
+        BigFoodCard("Marco")
         Text(
             text = "Hello $name!",
             modifier = modifier

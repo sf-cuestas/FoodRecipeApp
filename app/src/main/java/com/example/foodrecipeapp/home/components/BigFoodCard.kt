@@ -1,16 +1,17 @@
 package com.example.foodrecipeapp.home.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -23,47 +24,60 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.Padding
+import com.example.foodrecipeapp.app.TextStyleTheme
 import com.example.foodrecipeapp.app.components.Badge
+import com.example.foodrecipeapp.app.components.ButtonIcon
+import com.example.foodrecipeapp.app.components.ProfileLabel
 import com.example.foodrecipeapp.app.components.SaveButton
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 import com.example.foodrecipeapp.ui.theme.MainBackground
 import com.example.foodrecipeapp.ui.theme.Neutral
 
 @Composable
-fun BigFoodCard() {
+fun BigFoodCard(author: String) {
     Card(
         modifier = Modifier
             .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
+            .height(432.dp)
     ) {
-        Column(modifier = Modifier.padding(bottom = Padding.l)) {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .background(color = Color.White)
+        ) {
             FoodCardBackground()
             GeneralRecipeInfo(
-                modifier = Modifier.padding(top = Padding.m, start = Padding.l, end = Padding.l),
+                modifier = Modifier.padding(top = Padding.l, start = Padding.l, end = Padding.l),
                 rating = 4.9f,
                 difficultyLevel = "Medium skill",
                 calories = 520
             )
             Text(
-                modifier = Modifier.padding(vertical = Padding.m, horizontal = Padding.l),
+                modifier = Modifier.padding(Padding.l),
                 text = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato",
                 maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyleTheme.paragraphTextStyle
             )
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = Padding.l),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = Padding.l),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("author: Marco")
-                Button(onClick = {}) {
-                    Text("Start cooking")
+                ProfileLabel(author)
+                ButtonIcon(text = stringResource(R.string.home_recipe_card_start)) {
+                    Icon(painter = painterResource(R.drawable.ic_arrow), contentDescription = null)
                 }
             }
         }
@@ -82,6 +96,7 @@ private fun FoodCardBackground() {
         Image(
             modifier = Modifier.fillMaxWidth(),
             painter = painterResource(R.drawable.background_test),
+            contentScale = ContentScale.FillBounds,
             contentDescription = null
         )
         Row(
@@ -98,8 +113,15 @@ private fun FoodCardBackground() {
                 .align(Alignment.BottomStart)
                 .padding(Padding.m)
         ) {
-            Text(text = "RUSTIC MEDITERRANEAN", color = Neutral)
-            Text(text = "Creamy Tuscan Garlic Sun-Dried\nTomato Salmon", color = Color.White)
+            Text(
+                modifier = Modifier.padding(vertical = Padding.s),
+                text = "RUSTIC MEDITERRANEAN",
+                style = TextStyleTheme.subtitleTextStyle
+            )
+            Text(
+                text = "Creamy Tuscan Garlic Sun-Dried\nTomato Salmon",
+                style = TextStyleTheme.titleTextStyle
+            )
         }
     }
 }
@@ -112,23 +134,28 @@ private fun GeneralRecipeInfo(
     calories: Int
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(painter = painterResource(R.drawable.ic_star), contentDescription = null)
+        Icon(
+            painter = painterResource(R.drawable.ic_star),
+            tint = Color.Yellow,
+            contentDescription = null
+        )
         Text(
             modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-            text = rating.toString()
+            text = rating.toString(),
+            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
         )
-        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•")
+        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•", style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
         Icon(
             modifier = Modifier.padding(start = Padding.xs, end = Padding.s),
             painter = painterResource(R.drawable.ic_cookin_skill),
             contentDescription = null
         )
-        Text(difficultyLevel)
-        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•")
-        Text("$calories kcal")
+        Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
+        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•", style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
+        Text(stringResource(R.string.home_recipe_calorie, calories), style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
     }
 }
 
@@ -136,6 +163,6 @@ private fun GeneralRecipeInfo(
 @Composable
 private fun BigFoodCardPreview() {
     FoodRecipeAppTheme {
-        BigFoodCard()
+        BigFoodCard("Marco")
     }
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FoodRecipeApp</string>
+    //Home strings
+    <string name="home_recipe_card_start">Start Cooking</string>
+    <string name="home_recipe_calorie">%1$d kcal</string>
+    //end
 </resources>
