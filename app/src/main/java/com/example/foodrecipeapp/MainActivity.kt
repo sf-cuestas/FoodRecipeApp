@@ -31,6 +31,7 @@ import com.example.foodrecipeapp.home.presentation.HomeDetailPage
 import com.example.foodrecipeapp.home.presentation.HomePage
 import com.example.foodrecipeapp.home.presentation.ProfilePage
 import com.example.foodrecipeapp.home.presentation.SearchPage
+import com.example.foodrecipeapp.recipeDetail.presentation.RecipeDetailPage
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -88,7 +89,7 @@ fun FoodAppMain() {
                     MainTab.SEARCH -> NavDisplay(
                         backStack = searchBackStack,
                         entryProvider = entryProvider {
-                            entry<Search> { SearchPage() }
+                            entry<Search> { RecipeDetailPage() }
                         })
 
                     MainTab.PROFILE -> NavDisplay(
