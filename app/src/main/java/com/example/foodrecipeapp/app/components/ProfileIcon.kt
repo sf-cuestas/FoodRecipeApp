@@ -12,7 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.Padding
 import com.example.foodrecipeapp.app.TextStyleTheme
 
@@ -36,6 +38,9 @@ fun ProfileLabel(profileName: String) {
         horizontalArrangement = Arrangement.spacedBy(Padding.s)
     ) {
         ProfileIcon(profileName)
-        Text(text = profileName, style = TextStyleTheme.paragraphTextStyle)
+        Text(
+            text = stringResource(R.string.home_recipe_card_author, profileName),
+            style = TextStyleTheme.paragraphTextStyle
+        )
     }
 }

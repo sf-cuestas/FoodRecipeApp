@@ -54,7 +54,12 @@ fun BigFoodCard(author: String) {
                 .fillMaxHeight()
                 .background(color = Color.White)
         ) {
-            FoodCardBackground()
+            FoodCardBackground(
+                modifier = Modifier.height(256.dp),
+                recipeSubtitle = "RUSTIC MEDITERRANEAN",
+                recipeTitle = "Creamy Tuscan Garlic Sun-Dried\nTomato Salmon",
+                preparationTime = 35
+            )
             GeneralRecipeInfo(
                 modifier = Modifier.padding(top = Padding.l, start = Padding.l, end = Padding.l),
                 rating = 4.9f,
@@ -81,81 +86,6 @@ fun BigFoodCard(author: String) {
                 }
             }
         }
-    }
-
-}
-
-@Composable
-private fun FoodCardBackground() {
-    var isSelected by remember { mutableStateOf(true) }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(256.dp)
-    ) {
-        Image(
-            modifier = Modifier.fillMaxWidth(),
-            painter = painterResource(R.drawable.background_test),
-            contentScale = ContentScale.FillBounds,
-            contentDescription = null
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(Padding.m),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Badge(text = "35 min", backgroundColor = MainBackground)
-            SaveButton(isSelected = isSelected, onClick = { isSelected = !isSelected })
-        }
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(Padding.m)
-        ) {
-            Text(
-                modifier = Modifier.padding(vertical = Padding.s),
-                text = "RUSTIC MEDITERRANEAN",
-                style = TextStyleTheme.subtitleTextStyle
-            )
-            Text(
-                text = "Creamy Tuscan Garlic Sun-Dried\nTomato Salmon",
-                style = TextStyleTheme.titleTextStyle
-            )
-        }
-    }
-}
-
-@Composable
-private fun GeneralRecipeInfo(
-    modifier: Modifier = Modifier,
-    rating: Float,
-    difficultyLevel: String,
-    calories: Int
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            painter = painterResource(R.drawable.ic_star),
-            tint = Color.Yellow,
-            contentDescription = null
-        )
-        Text(
-            modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-            text = rating.toString(),
-            style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral)
-        )
-        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•", style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
-        Icon(
-            modifier = Modifier.padding(start = Padding.xs, end = Padding.s),
-            painter = painterResource(R.drawable.ic_cookin_skill),
-            contentDescription = null
-        )
-        Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
-        Text(modifier = Modifier.padding(horizontal = Padding.m), text = "•", style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
-        Text(stringResource(R.string.home_recipe_calorie, calories), style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))
     }
 }
 
