@@ -45,6 +45,7 @@ fun GeneralRecipeInfo(
         Icon(
             modifier = Modifier.padding(start = Padding.xs, end = Padding.s),
             painter = painterResource(R.drawable.ic_cookin_skill),
+            tint = Neutral,
             contentDescription = null
         )
         Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = Neutral))

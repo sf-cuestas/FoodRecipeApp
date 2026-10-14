@@ -30,7 +30,8 @@ fun FoodCardBackground(
     modifier: Modifier = Modifier,
     recipeTitle: String? = null,
     recipeSubtitle: String? = null,
-    preparationTime: Int? = null
+    preparationTime: Int? = null,
+    showSaveButton: Boolean = true
 ) {
     var isSelected by remember { mutableStateOf(true) }
     Box(modifier = modifier.fillMaxWidth()) {
@@ -52,7 +53,9 @@ fun FoodCardBackground(
                     backgroundColor = MainBackground
                 )
             }
-            SaveButton(isSelected = isSelected, onClick = { isSelected = !isSelected })
+            if (showSaveButton){
+                SaveButton(isSelected = isSelected, onClick = { isSelected = !isSelected })
+            }
         }
         Column(
             modifier = Modifier
