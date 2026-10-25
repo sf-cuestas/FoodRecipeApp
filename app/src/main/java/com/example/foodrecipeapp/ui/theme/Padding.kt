@@ -7,4 +7,6 @@ object Padding{
     val s = 4.dp
     val m = 10.dp
     val l = 16.dp
+    val xl = 20.dp
+    val xxl = 24.dp
 }

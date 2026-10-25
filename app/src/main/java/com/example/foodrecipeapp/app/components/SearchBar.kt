@@ -20,6 +20,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.foodrecipeapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,7 +31,6 @@ fun SearchBar(
     searchResults: List<String>?,
     modifier: Modifier = Modifier
 ) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
 
     Box(modifier = modifier.fillMaxWidth()) {
         SearchBar(
@@ -41,29 +42,15 @@ fun SearchBar(
                     onQueryChange = { textFieldState.edit { replace(0, length, it) } },
                     onSearch = {
                         onSearch(textFieldState.text.toString())
-                        expanded = false
                     },
-                    expanded = expanded,
-                    onExpandedChange = { expanded = it },
-                    placeholder = { Text("Search") }
+                    expanded =false,
+                    onExpandedChange = { },
+                    placeholder = { Text(stringResource(R.string.search_bar_placeholder)) }
                 )
             },
-            expanded = expanded,
-            onExpandedChange = { expanded = it },
+            expanded = false,
+            onExpandedChange = {},
         ) {
-            Column(Modifier.verticalScroll(rememberScrollState())) {
-                searchResults?.forEach { result ->
-                    ListItem(
-                        headlineContent = { Text(result) },
-                        modifier = Modifier
-                            .clickable {
-                                textFieldState.edit { replace(0, length, result) }
-                                expanded = false
-                            }
-                            .fillMaxWidth()
-                    )
-                }
-            }
         }
     }
 
