@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -31,6 +32,7 @@ import com.example.foodrecipeapp.home.presentation.HomeDetailPage
 import com.example.foodrecipeapp.home.presentation.HomePage
 import com.example.foodrecipeapp.home.presentation.ProfilePage
 import com.example.foodrecipeapp.home.presentation.SearchPage
+import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,7 +52,7 @@ fun FoodAppMain() {
     val profileBackStack = rememberNavBackStack(Profile)
     val searchBackStack = rememberNavBackStack(Search)
     FoodRecipeAppTheme {
-        Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = {
+        Scaffold(modifier = Modifier.fillMaxSize().background(color = ColorTheme.MainBackground), bottomBar = {
             NavigationBar {
                 MainTab.entries.forEach { entry ->
                     NavigationBarItem(

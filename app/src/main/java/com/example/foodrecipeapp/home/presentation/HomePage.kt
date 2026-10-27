@@ -32,7 +32,6 @@ import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePage(
     name: String,
