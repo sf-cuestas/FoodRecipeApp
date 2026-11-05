@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
+import com.example.foodrecipeapp.ui.theme.Padding
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 
 @Composable
 fun ProfileIcon(profileName: String) {

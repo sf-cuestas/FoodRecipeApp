@@ -17,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.Padding
+import com.example.foodrecipeapp.ui.theme.ColorTheme
+import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 import com.example.foodrecipeapp.ui.theme.MainBackground
 import com.example.foodrecipeapp.ui.theme.Primary
@@ -54,11 +56,10 @@ fun Badge(
 
 }
 
-
 @Preview(showBackground = true)
 @Composable
 private fun BadgePreview() {
     FoodRecipeAppTheme {
-        Badge(text = "35 minutes", backgroundColor = MainBackground)
+        Badge(text = "35 minutes", backgroundColor = ColorTheme.MainBackground)
     }
 }

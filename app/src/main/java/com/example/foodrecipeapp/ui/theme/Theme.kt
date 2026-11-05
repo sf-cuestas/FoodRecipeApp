@@ -11,15 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Primary,
-    secondary = Secondary,
-    tertiary = Tertiary
+    primary = ColorTheme.Primary,
+    secondary = ColorTheme.Secondary,
+    tertiary = ColorTheme.Tertiary
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Primary,
-    secondary = Secondary,
-    tertiary = Tertiary
+    background = ColorTheme.MainBackground,
+    primary = ColorTheme.Primary,
+    secondary = ColorTheme.Secondary,
+    tertiary = ColorTheme.Tertiary
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -39,15 +40,7 @@ fun FoodRecipeAppTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colorScheme = LightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

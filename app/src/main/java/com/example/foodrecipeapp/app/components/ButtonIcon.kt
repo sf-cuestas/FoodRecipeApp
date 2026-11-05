@@ -1,11 +1,8 @@
 package com.example.foodrecipeapp.app.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
@@ -18,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.ui.theme.Primary
+import com.example.foodrecipeapp.ui.theme.ColorTheme
+import com.example.foodrecipeapp.ui.theme.Padding
 
 
 @Composable
@@ -34,7 +31,7 @@ fun ButtonIcon(
         enabled = isEnable,
         colors = ButtonColors(
             contentColor = Color.White,
-            containerColor = Primary,
+            containerColor = ColorTheme.Primary,
             disabledContainerColor = Color.Gray,
             disabledContentColor = Color.White
         ),

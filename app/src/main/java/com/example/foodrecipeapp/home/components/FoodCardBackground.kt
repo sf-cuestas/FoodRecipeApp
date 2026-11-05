@@ -15,15 +15,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
+import com.example.foodrecipeapp.ui.theme.Padding
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.app.components.Badge
 import com.example.foodrecipeapp.app.components.SaveButton
-import com.example.foodrecipeapp.ui.theme.MainBackground
 
 @Composable
 fun FoodCardBackground(
@@ -50,7 +50,7 @@ fun FoodCardBackground(
             preparationTime?.let {
                 Badge(
                     text = stringResource(R.string.home_recipe_card_preparation_time, it),
-                    backgroundColor = MainBackground
+                    backgroundColor = Color.White
                 )
             }
             if (showSaveButton){
