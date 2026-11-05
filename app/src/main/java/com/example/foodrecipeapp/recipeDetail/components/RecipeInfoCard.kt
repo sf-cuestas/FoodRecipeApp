@@ -24,8 +24,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.app.Padding
-import com.example.foodrecipeapp.app.TextStyleTheme
 import com.example.foodrecipeapp.app.components.ButtonIcon
 import com.example.foodrecipeapp.app.components.ProfileLabel
 import com.example.foodrecipeapp.home.components.FoodCardBackground
@@ -38,7 +36,7 @@ fun RecipeInfoCard() {
         modifier = Modifier
             .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
-            .height(328.dp)
+            .height(432.dp)
     ) {
         Column(
             modifier = Modifier
@@ -61,5 +59,6 @@ fun RecipeInfoCard() {
 private fun RecipeInfoCardPreview() {
     FoodRecipeAppTheme {
         RecipeInfoCard()
+
     }
 }

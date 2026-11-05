@@ -3,6 +3,7 @@ package com.example.foodrecipeapp.recipeDetail.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,7 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.components.Badge
-import com.example.foodrecipeapp.ui.theme.MainBackground
+import com.example.foodrecipeapp.ui.theme.ColorTheme.MainBackground
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,6 +46,7 @@ fun CarouselInfo() {
     HorizontalUncontainedCarousel(
         state = rememberCarouselState { carouselItems.count() },
         modifier = Modifier
+
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(top = 16.dp, bottom = 16.dp),
@@ -54,6 +57,7 @@ fun CarouselInfo() {
         val item = carouselItems[i]
         Badge(
             modifier = Modifier
+                .aspectRatio(0.8f)
                 .maskClip(MaterialTheme.shapes.extraLarge),
             iconId = item.icon,
             text = item.contentDescription,
