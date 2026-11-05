@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -108,8 +109,7 @@ fun HomePage(
 
         QuickRecipes()
 
-        MediumFoodCard()
-        SmallFoodCard()
+        TrendingRecipes()
 
         Text(
             text = "Hello $name!",
@@ -164,6 +164,57 @@ private fun QuickRecipes() {
             item {
                 MediumFoodCard(modifier = Modifier.width(256.dp))
             }
+        }
+    }
+}
+
+@Composable
+private fun TrendingRecipes() {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = Padding.m)) {
+        Row(
+            modifier = Modifier
+                .padding(bottom = Padding.m)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = stringResource(R.string.home_trending_recipes_title),
+                    style = TextStyleTheme.titleTextStyle
+                )
+                Text(
+                    text = stringResource(R.string.home_trending_recipes_subtitle),
+                    style = TextStyleTheme.paragraphTextStyle
+                )
+            }
+
+            Icon(
+                modifier = Modifier.size(15.dp),
+                painter = painterResource(R.drawable.ic_improvement),
+                tint = ColorTheme.Primary,
+                contentDescription = null
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(vertical = Padding.m)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            SmallFoodCard(modifier = Modifier.width(173.dp))
+            SmallFoodCard(modifier = Modifier.width(173.dp))
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(vertical = Padding.m)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            SmallFoodCard(modifier = Modifier.width(173.dp))
+            SmallFoodCard(modifier = Modifier.width(173.dp))
         }
     }
 }

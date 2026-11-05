@@ -13,6 +13,8 @@
     <string name="home_updated_daily">Updated daily</string>
     <string name="home_quick_dinners_title">Quick Weeknight Dinners</string>
     <string name="home_quick_dinners_subtitle">Delicious dinners ready in 30 minutes or less</string>
+    <string name="home_trending_recipes_title">Trending in the Community</string>
+    <string name="home_trending_recipes_subtitle">Dishes getting made right now in member kitchens</string>
     //end
     
     //Search bar
