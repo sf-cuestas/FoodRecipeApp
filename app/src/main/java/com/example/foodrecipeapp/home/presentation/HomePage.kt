@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.components.Badge
@@ -73,9 +75,7 @@ fun HomePage(
 
         Column(
             modifier = Modifier.padding(vertical = Padding.xxl),
-            verticalArrangement = Arrangement.spacedBy(
-                Padding.s
-            )
+            verticalArrangement = Arrangement.spacedBy(Padding.s)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -105,6 +105,9 @@ fun HomePage(
             }
             BigFoodCard("Marco")
         }
+
+        QuickRecipes()
+
         MediumFoodCard()
         SmallFoodCard()
 
@@ -117,6 +120,50 @@ fun HomePage(
             navigateTo("sudkud")
         }) {
             Text("sdafdsf")
+        }
+    }
+}
+
+@Composable
+private fun QuickRecipes() {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier
+                .padding(bottom = Padding.m)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = stringResource(R.string.home_quick_dinners_title),
+                    style = TextStyleTheme.titleTextStyle
+                )
+                Text(
+                    text = stringResource(R.string.home_quick_dinners_subtitle),
+                    style = TextStyleTheme.paragraphTextStyle
+                )
+            }
+
+            Text(
+                text = stringResource(R.string.see_all),
+                style = TextStyleTheme.paragraphTextStyle.copy(color = ColorTheme.Primary)
+            )
+        }
+
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(Padding.m)
+        ) {
+            item {
+                MediumFoodCard(modifier = Modifier.width(256.dp))
+            }
+            item {
+                MediumFoodCard(modifier = Modifier.width(256.dp))
+            }
+            item {
+                MediumFoodCard(modifier = Modifier.width(256.dp))
+            }
         }
     }
 }
