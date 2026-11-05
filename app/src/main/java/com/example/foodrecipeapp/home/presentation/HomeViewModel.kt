@@ -9,7 +9,8 @@ class HomeViewModel(val homeController: HomeController) : ViewModel() {
 
     fun tryConnection() {
         viewModelScope.launch {
-            homeController.tryConnection()
+            homeController.getAccessToken()
+            //homeController.tryConnection()
         }
     }
 }
