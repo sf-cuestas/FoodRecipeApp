@@ -34,7 +34,6 @@ import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 fun Ingredients(
     modifier: Modifier = Modifier,
 ) {
-    var isChecked by remember { mutableStateOf(true) }
     Column(
         modifier = modifier.fillMaxWidth()
             .background(color = Color.White
@@ -63,47 +62,36 @@ fun Ingredients(
         ) {
             IngredientsCheck(
                 modifier = Modifier,
-                check = isChecked,
+                ingredientName = "Salmon fillets (6 oz each, skin-on)",
+                quantity = "4 fillets",
+                onClickAction = {}
+            )
+            IngredientsCheck(
+                modifier = Modifier,
                 ingredientName = "Salmon fillets (6 oz each, skin-on)",
                 quantity = "4 fillets",
                 onClickAction = {
-                    isChecked = !isChecked
                 }
             )
             IngredientsCheck(
                 modifier = Modifier,
-                check = isChecked,
                 ingredientName = "Salmon fillets (6 oz each, skin-on)",
                 quantity = "4 fillets",
                 onClickAction = {
-                    isChecked = !isChecked
                 }
             )
             IngredientsCheck(
                 modifier = Modifier,
-                check = isChecked,
                 ingredientName = "Salmon fillets (6 oz each, skin-on)",
                 quantity = "4 fillets",
                 onClickAction = {
-                    isChecked = !isChecked
                 }
             )
             IngredientsCheck(
                 modifier = Modifier,
-                check = isChecked,
                 ingredientName = "Salmon fillets (6 oz each, skin-on)",
                 quantity = "4 fillets",
                 onClickAction = {
-                    isChecked = !isChecked
-                }
-            )
-            IngredientsCheck(
-                modifier = Modifier,
-                check = isChecked,
-                ingredientName = "Salmon fillets (6 oz each, skin-on)",
-                quantity = "4 fillets",
-                onClickAction = {
-                    isChecked = !isChecked
                 }
             )
 

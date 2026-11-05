@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,65 +26,91 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.foodrecipeapp.app.components.Badge
 import com.example.foodrecipeapp.ui.theme.ColorTheme
+import com.example.foodrecipeapp.ui.theme.ColorTheme.MainBackground
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 
 @Composable
 fun IngredientsCheck(
     modifier: Modifier = Modifier,
-    check: Boolean,
     ingredientName: String,
     quantity: String,
     onClickAction: () -> Unit
 ) {
-    var checkBox = ColorTheme.Secondary
-    if (check) {
-        checkBox = ColorTheme.Secondary
-    }else{
-        checkBox = Color.Gray
-    }
-        Row(
-            modifier = Modifier
-                .background(
-                    color = Color.LightGray,
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .fillMaxWidth()
-                .padding(Padding.m)
-                .clickable(onClick = onClickAction)
-                ,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+    var isSelected by remember { mutableStateOf(false) }
 
-            Box(
-                modifier = Modifier.clip(CircleShape)
-                    .size(25.dp)
-                    .background(checkBox)
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color.LightGray,
+                shape = RoundedCornerShape(12.dp)
             )
+            .fillMaxWidth()
+            .padding(Padding.l)
+            .clickable(onClick = {
+                onClickAction()
+                isSelected = !isSelected
+            }),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-            ) {
+        Box(
+            modifier = Modifier.clip(CircleShape)
+                .size(25.dp)
+                .background(if (isSelected) ColorTheme.Secondary else Color.Gray)
+        )
 
-                Text(
-                    modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-                    text = ingredientName,
-                    style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
-                )
-                Text(
-                    modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-                    text = "in your pantry",
-                    style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
-                )
-
-            }
+        Column(
+            modifier = Modifier
+                .weight(1f)
+        ) {
             Text(
                 modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-                text = quantity,
+                text = ingredientName,
                 style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
             )
+            if (isSelected) {
+                IndicatorIsSelected()
+            }
+
         }
+        Text(
+            modifier = Modifier.padding(start = Padding.s, end = Padding.m),
+            text = quantity,
+            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
+        )
+
+    }
 }
+    @Composable
+    fun IndicatorIsSelected() {
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+
+                painter = painterResource(com.example.foodrecipeapp.R.drawable.ic_pantry),
+                contentDescription = null
+            )
+            Text(
+                modifier = Modifier.padding(start = Padding.s, end = Padding.m),
+                text = "is selected",
+                style = TextStyleTheme.subtitleTextStyle.copy(
+                    color = ColorTheme.Neutral,
+                    fontSize = 12.sp
+                ),
+
+                )
+        }
+    }
+
+
+
