@@ -1,25 +1,26 @@
 package com.example.foodrecipeapp.api
 
 import okhttp3.OkHttpClient
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val NetworkModule = module {
-    single {
+    single(named("apiOkHttpClient")) {
         OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .addInterceptor(HeaderInterceptor())
             .build()
     }
-    single<Retrofit> {
+    single<Retrofit>(named("apiRetrofit")) {
         Retrofit.Builder()
-            .client(get())
+            .client(get(named("apiOkHttpClient")))
             .baseUrl("https://platform.fatsecret.com/rest/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
     single<ApiFood> {
-        get<Retrofit>().create(ApiFood::class.java)
+        get<Retrofit>(named("apiRetrofit")).create(ApiFood::class.java)
     }
 }
