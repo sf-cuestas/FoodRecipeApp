@@ -15,19 +15,21 @@ import androidx.compose.ui.unit.dp
 import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 
 @Composable
 fun Badge(modifier: Modifier = Modifier, text: String, backgroundColor: Color) {
     Box(
         modifier = modifier
-            .wrapContentSize()
             .clip(RoundedCornerShape(24.dp))
             .background(color = backgroundColor)
     ) {
         Text(
             modifier = Modifier.padding(horizontal = Padding.m, vertical = Padding.s),
             text = text,
-            color = Color.Black
+            color = Color.Black,
+            style = TextStyleTheme.paragraphTextStyle,
+            maxLines = 1
         )
     }
 
