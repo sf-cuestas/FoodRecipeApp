@@ -30,21 +30,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.foodrecipeapp.app.components.Badge
+import com.example.foodrecipeapp.recipeDetail.presentation.viewmodel.RecipeViewModel
 import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.ColorTheme.MainBackground
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun IngredientsCheck(
     modifier: Modifier = Modifier,
     ingredientName: String,
     quantity: String,
+    recipeViewModel: RecipeViewModel = koinViewModel(),
     onClickAction: () -> Unit
 ) {
-    var isSelected by remember { mutableStateOf(false) }
-
+    var isSelected by remember { mutableStateOf(true) }
     Row(
         modifier = Modifier
             .background(
@@ -64,7 +67,12 @@ fun IngredientsCheck(
         Box(
             modifier = Modifier.clip(CircleShape)
                 .size(25.dp)
-                .background(if (isSelected) ColorTheme.Secondary else Color.Gray)
+                .background(if (isSelected){
+                    ColorTheme.Secondary
+
+                } else{
+                    Color.Gray
+                })
         )
 
         Column(
@@ -76,8 +84,13 @@ fun IngredientsCheck(
                 text = ingredientName,
                 style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
             )
+
             if (isSelected) {
                 IndicatorIsSelected()
+                recipeViewModel.addIngredientsCount()
+            }
+            if(!isSelected){
+                recipeViewModel.removeIngredientsCount()
             }
 
         }

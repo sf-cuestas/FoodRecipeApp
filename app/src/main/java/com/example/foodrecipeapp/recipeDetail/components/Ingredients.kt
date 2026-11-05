@@ -23,17 +23,22 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.components.Badge
 import com.example.foodrecipeapp.app.components.SaveButton
+import com.example.foodrecipeapp.recipeDetail.presentation.viewmodel.RecipeViewModel
 import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Ingredients(
     modifier: Modifier = Modifier,
+    recipeViewModel: RecipeViewModel = koinViewModel()
 ) {
+    val uiState = recipeViewModel.uiState.collectAsStateWithLifecycle()
     Column(
         modifier = modifier.fillMaxWidth()
             .background(color = Color.White
@@ -50,9 +55,10 @@ fun Ingredients(
                 text = "Ingredients",
                 style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
             )
+            val count = uiState.value.countedIngredients
             Text(
                 modifier = Modifier.padding(start = Padding.s, end = Padding.m),
-                text = "Ingredients",
+                text = "$count / 5",
                 style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
             )
         }

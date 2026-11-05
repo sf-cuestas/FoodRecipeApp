@@ -1,5 +1,6 @@
 package com.example.foodrecipeapp.home.data
 
+import android.util.Log
 import com.example.foodrecipeapp.api.ApiFood
 import com.example.foodrecipeapp.api.data.FoodBrandsResponse
 
@@ -12,4 +13,6 @@ class HomeRepository(val foodNetworkConnection: ApiFood) {
             Result.failure(e)
         }
     }
+
+
 }
