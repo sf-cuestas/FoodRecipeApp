@@ -24,7 +24,8 @@ fun ButtonIcon(
     modifier: Modifier = Modifier,
     text: String,
     isEnable: Boolean = true,
-    icon: @Composable () -> Unit
+    icon: @Composable () -> Unit,
+    onClick: () -> Unit = {}
 ) {
     Button(
         modifier = modifier,
@@ -35,7 +36,7 @@ fun ButtonIcon(
             disabledContainerColor = Color.Gray,
             disabledContentColor = Color.White
         ),
-        onClick = {}) {
+        onClick = onClick) {
         Row(
             modifier = Modifier
                 .padding(horizontal = Padding.l)
@@ -57,7 +58,7 @@ fun ButtonIcon(
 @Preview
 @Composable
 private fun ButtonIconPreview() {
-    ButtonIcon(text = "test", isEnable = false) {
+    ButtonIcon(text = "test", isEnable = false, onClick = {}, icon =  {
         Icon(painter = painterResource(R.drawable.ic_arrow), contentDescription = null)
-    }
+    })
 }

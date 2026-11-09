@@ -31,7 +31,7 @@ import com.example.foodrecipeapp.app.components.ProfileLabel
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable
-fun BigFoodCard(author: String) {
+fun BigFoodCard(author: String, onClickButton: () -> Unit = {} ) {
     Card(
         modifier = Modifier
             .clip(RoundedCornerShape(16.dp))
@@ -70,9 +70,9 @@ fun BigFoodCard(author: String) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ProfileLabel(author)
-                ButtonIcon(text = stringResource(R.string.home_recipe_card_start)) {
+                ButtonIcon(text = stringResource(R.string.home_recipe_card_start), onClick = onClickButton, icon =  {
                     Icon(painter = painterResource(R.drawable.ic_arrow), contentDescription = null)
-                }
+                })
             }
         }
     }
