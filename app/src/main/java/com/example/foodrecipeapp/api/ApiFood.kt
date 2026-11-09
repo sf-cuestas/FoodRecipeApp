@@ -5,6 +5,6 @@ import com.example.foodrecipeapp.api.data.RecipeResponse
 import retrofit2.http.GET
 
 interface ApiFood {
-    @GET("v1/recipes")
+    @GET("recipes")
     suspend fun tryConnection(): RecipeResponse
 }
