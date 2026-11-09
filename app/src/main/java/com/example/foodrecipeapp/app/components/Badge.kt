@@ -20,6 +20,7 @@ import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.ColorTheme.Primary
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
+import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 
 @Composable
 fun Badge(
@@ -30,7 +31,6 @@ fun Badge(
 ) {
     Box(
         modifier = modifier
-            .wrapContentSize()
             .clip(RoundedCornerShape(24.dp))
             .background(color = backgroundColor)
     ) {
@@ -50,6 +50,13 @@ fun Badge(
                 color = Color.Black
             )
         }
+        Text(
+            modifier = Modifier.padding(horizontal = Padding.m, vertical = Padding.s),
+            text = text,
+            color = Color.Black,
+            style = TextStyleTheme.paragraphTextStyle,
+            maxLines = 1
+        )
     }
 
 }

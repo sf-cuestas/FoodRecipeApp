@@ -21,36 +21,44 @@ import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable
-fun MediumFoodCard() {
+fun MediumFoodCard(modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
         Column(
             modifier = Modifier
+                .fillMaxWidth()
                 .background(color = Color.White)
         ) {
             FoodCardBackground(
-                modifier = Modifier.height(144.dp),
+                modifier = Modifier
+                    .height(144.dp)
+                    .fillMaxWidth(),
                 preparationTime = 35
             )
             GeneralRecipeInfo(
-                modifier = Modifier.padding(top = Padding.m, start = Padding.m, end = Padding.m),
+                modifier = Modifier
+                    .padding(top = Padding.m, start = Padding.m, end = Padding.m)
+                    .fillMaxWidth(),
                 rating = 4.9f,
-                difficultyLevel = "Medium skill",
-                calories = 520
+                difficultyLevel = "Medium skill"
             )
             Text(
-                modifier = Modifier.padding(Padding.m),
+                modifier = Modifier
+                    .padding(Padding.m)
+                    .fillMaxWidth(),
                 text = "Crispy Honey Soy Tofu Bowls",
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 style = TextStyleTheme.titleTextStyle
             )
             Text(
-                modifier = Modifier.padding(vertical = Padding.s, horizontal = Padding.m),
+                modifier = Modifier
+                    .padding(vertical = Padding.s, horizontal = Padding.m)
+                    .fillMaxWidth(),
                 text = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato",
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,

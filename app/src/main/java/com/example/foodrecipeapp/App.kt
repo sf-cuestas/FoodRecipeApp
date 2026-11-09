@@ -1,9 +1,10 @@
 package com.example.foodrecipeapp
 
 import android.app.Application
+import com.example.foodrecipeapp.api.AuthenticationNetworkModule
 import com.example.foodrecipeapp.api.NetworkModule
+import com.example.foodrecipeapp.authentication.injection.AuthenticationModule
 import com.example.foodrecipeapp.home.injection.HomeModule
-import com.example.foodrecipeapp.home.injection.RecipeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
@@ -14,9 +15,10 @@ class App : Application(), KoinComponent {
         startKoin {
             androidContext(this@App)
             modules(
+                AuthenticationNetworkModule,
                 NetworkModule,
-                HomeModule,
-                RecipeModule
+                AuthenticationModule,
+                HomeModule
             )
         }
     }

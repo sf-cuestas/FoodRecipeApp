@@ -10,38 +10,33 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable
-fun SmallFoodCard() {
+fun SmallFoodCard(modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
         Column(
-            modifier = Modifier
-                .background(color = Color.White)
+            modifier = Modifier.background(color = Color.White)
         ) {
             FoodCardBackground(
                 modifier = Modifier.height(112.dp),
                 preparationTime = 35,
                 showSaveButton = false
-            )
-            GeneralRecipeInfo(
-                modifier = Modifier.padding(top = Padding.m, start = Padding.m, end = Padding.m),
-                rating = 4.9f,
-                difficultyLevel = "Medium skill",
-                calories = 520
             )
             Text(
                 modifier = Modifier.padding(Padding.m),
@@ -49,6 +44,11 @@ fun SmallFoodCard() {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = TextStyleTheme.titleTextStyle
+            )
+            Text(
+                modifier = Modifier.padding(horizontal = Padding.m),
+                text = "Easy",
+                style = TextStyleTheme.paragraphTextStyle.copy(color = ColorTheme.Secondary)
             )
         }
     }

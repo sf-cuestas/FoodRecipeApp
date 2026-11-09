@@ -21,7 +21,7 @@ fun GeneralRecipeInfo(
     modifier: Modifier = Modifier,
     rating: Float,
     difficultyLevel: String,
-    calories: Int
+    calories: Int? = null
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -48,15 +48,21 @@ fun GeneralRecipeInfo(
             tint = ColorTheme.Neutral,
             contentDescription = null
         )
-        Text(difficultyLevel, style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral))
         Text(
-            modifier = Modifier.padding(horizontal = Padding.m),
-            text = "•",
+            difficultyLevel,
             style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
         )
-        Text(
-            stringResource(R.string.home_recipe_calorie, calories),
-            style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
-        )
+        calories?.let {
+            Text(
+                modifier = Modifier.padding(horizontal = Padding.m),
+                text = "•",
+                style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
+            )
+
+            Text(
+                stringResource(R.string.home_recipe_calorie, calories),
+                style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
+            )
+        }
     }
 }

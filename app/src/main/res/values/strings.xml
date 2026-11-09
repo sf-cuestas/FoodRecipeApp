@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FoodRecipeApp</string>
+    //General strings
+    <string name="see_all">See all</string>
+    //end
     //Home strings
     <string name="home_recipe_card_start">Start Cooking</string>
     <string name="home_recipe_calorie">%1$d kcal</string>
@@ -8,6 +11,10 @@
     <string name="home_title">What are we cooking today, %1$s?</string>
     <string name="home_daily_choice_title">CHEF\'S CHOICE DAILY SPOTLIGHT</string>
     <string name="home_updated_daily">Updated daily</string>
+    <string name="home_quick_dinners_title">Quick Weeknight Dinners</string>
+    <string name="home_quick_dinners_subtitle">Delicious dinners ready in 30 minutes or less</string>
+    <string name="home_trending_recipes_title">Trending in the Community</string>
+    <string name="home_trending_recipes_subtitle">Dishes getting made right now in member kitchens</string>
     //end
     
     //Search bar
