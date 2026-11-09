@@ -39,7 +39,7 @@ fun IngredientsInfo(
             Text(
                 modifier = Modifier.padding(start = Padding.s, end = Padding.m),
                 text = "Ingredients",
-                style = TextStyleTheme.subtitleTextStyle.copy(color = ColorTheme.Neutral)
+                style = TextStyleTheme.titleTextStyle
             )
             val count = uiState.value.countedIngredients
             Text(
@@ -50,8 +50,10 @@ fun IngredientsInfo(
         }
         Column(
             modifier = Modifier
-                .padding(Padding.m)
+                .padding(Padding.m),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
             IngredientsCheck(
                 modifier = Modifier,
                 ingredientName = "Salmon fillets (6 oz each, skin-on)",
