@@ -35,7 +35,7 @@ import com.example.foodrecipeapp.app.data.Search
 import com.example.foodrecipeapp.home.presentation.HomeDetailPage
 import com.example.foodrecipeapp.home.presentation.HomePage
 import com.example.foodrecipeapp.home.presentation.ProfilePage
-import com.example.foodrecipeapp.home.presentation.SearchPage
+import com.example.foodrecipeapp.recipeDetail.presentation.RecipeDetailPage
 import com.example.foodrecipeapp.ui.theme.ColorTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
@@ -97,21 +97,21 @@ fun FoodAppMain() {
                         backStack = homeBackStack,
                         entryProvider = entryProvider {
                             entry<Home> {
-                                HomePage("Home page", navigateTo = { id ->
+                                HomePage("Home page", navigateToRecipeDetail = { id ->
                                     homeBackStack.add(
                                         HomeDetail(id)
                                     )
                                 })
                             }
                             entry<HomeDetail> {
-                                HomeDetailPage(it.id)
+                                RecipeDetailPage("")
                             }
                         })
 
                     MainTab.SEARCH -> NavDisplay(
                         backStack = searchBackStack,
                         entryProvider = entryProvider {
-                            entry<Search> { SearchPage() }
+                            entry<Search> { RecipeDetailPage("Recipe Page") }
                         })
 
                     MainTab.PROFILE -> NavDisplay(

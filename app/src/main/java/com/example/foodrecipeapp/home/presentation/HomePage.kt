@@ -42,7 +42,7 @@ fun HomePage(
     name: String,
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = koinViewModel(),
-    navigateTo: (id: String) -> Unit,
+    navigateToRecipeDetail: (id: String) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -104,7 +104,7 @@ fun HomePage(
                     style = TextStyleTheme.paragraphTextStyle.copy(color = ColorTheme.Neutral)
                 )
             }
-            BigFoodCard("Marco")
+            BigFoodCard("Marco", onClickButton = {navigateToRecipeDetail("sdfsd")})
         }
 
         QuickRecipes()
@@ -117,7 +117,7 @@ fun HomePage(
         )
         Button(onClick = {
             homeViewModel.tryConnection()
-            navigateTo("sudkud")
+            navigateToRecipeDetail("sudkud")
         }) {
             Text("sdafdsf")
         }
@@ -223,6 +223,6 @@ private fun TrendingRecipes() {
 @Composable
 private fun HomePagePreview() {
     FoodRecipeAppTheme {
-        HomePage(name = "felipe", navigateTo = {})
+        HomePage(name = "felipe", navigateToRecipeDetail = {})
     }
 }

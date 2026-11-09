@@ -33,4 +33,11 @@ object TextStyleTheme {
         fontFamily = Liberata,
         fontWeight = FontWeight.Medium
     )
+
+    val titleTextStyleV2 = TextStyle(
+        color = Color.Black,
+        fontSize = 18.sp,
+        fontFamily = Liberata,
+        fontWeight = FontWeight.Bold
+    )
 }

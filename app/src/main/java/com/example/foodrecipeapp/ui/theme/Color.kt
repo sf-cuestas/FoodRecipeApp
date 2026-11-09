@@ -8,4 +8,6 @@ object ColorTheme{
     val Tertiary = Color(0xFFD89A3C)
     val Neutral = Color(0xFF1F1E1D)
     val MainBackground = Color(0xFFFFF0ED)
+
+    val SecondBackground = Color(0xFFF7F3F0)
 }

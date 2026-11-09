@@ -12,3 +12,4 @@ val HomeModule = module {
 
     viewModelOf(::HomeViewModel)
 }
+
