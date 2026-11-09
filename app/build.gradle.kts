@@ -1,7 +1,19 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     kotlin("plugin.serialization") version "2.4.20"
+}
+fun getEnvProperty(key: String): String {
+    val envFile = rootProject.file(".env")
+    if (envFile.exists()) {
+        val properties = Properties().apply {
+            envFile.inputStream().use { load(it) }
+        }
+        return properties.getProperty(key) ?: ""
+    }
+    return ""
 }
 
 android {
@@ -18,6 +30,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val clientId = getEnvProperty("RECIPE_API_KEY")
+        buildConfigField("String", "RECIPE_API_KEY", "\"$clientId\"")
     }
 
     buildTypes {
@@ -33,6 +47,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

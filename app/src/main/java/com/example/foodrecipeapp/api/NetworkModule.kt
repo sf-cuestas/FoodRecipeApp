@@ -16,7 +16,7 @@ val NetworkModule = module {
     single<Retrofit>(named("apiRetrofit")) {
         Retrofit.Builder()
             .client(get(named("apiOkHttpClient")))
-            .baseUrl("https://platform.fatsecret.com/rest/")
+            .baseUrl("https://recipeapi.io/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

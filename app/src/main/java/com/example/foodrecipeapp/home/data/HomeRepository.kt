@@ -1,11 +1,10 @@
 package com.example.foodrecipeapp.home.data
 
 import com.example.foodrecipeapp.api.ApiFood
-import com.example.foodrecipeapp.api.AuthenticationFatSecret
-import com.example.foodrecipeapp.api.data.FoodBrandsResponse
+import com.example.foodrecipeapp.api.data.RecipeResponse
 
 class HomeRepository(val foodNetworkConnection: ApiFood) {
-    suspend fun tryConnection(): Result<FoodBrandsResponse> {
+    suspend fun tryConnection(): Result<RecipeResponse> {
         return try {
             val result = foodNetworkConnection.tryConnection()
             Result.success(result)
