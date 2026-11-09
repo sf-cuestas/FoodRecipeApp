@@ -116,7 +116,7 @@ fun HomePage(
             modifier = modifier
         )
         Button(onClick = {
-            homeViewModel.tryConnection()
+            homeViewModel.getRecipes()
             navigateToRecipeDetail("sudkud")
         }) {
             Text("sdafdsf")

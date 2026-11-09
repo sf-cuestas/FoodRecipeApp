@@ -1,13 +1,12 @@
 package com.example.foodrecipeapp.home.data
 
-import android.util.Log
 import com.example.foodrecipeapp.api.ApiFood
 import com.example.foodrecipeapp.api.data.RecipeResponse
 
 class HomeRepository(val foodNetworkConnection: ApiFood) {
-    suspend fun tryConnection(): Result<RecipeResponse> {
+    suspend fun getRecipes(): Result<RecipeResponse> {
         return try {
-            val result = foodNetworkConnection.tryConnection()
+            val result = foodNetworkConnection.getRecipes()
             Result.success(result)
         } catch (e: Exception) {
             Result.failure(e)
