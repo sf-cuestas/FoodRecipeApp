@@ -11,12 +11,14 @@ import com.example.foodrecipeapp.recipeDetail.components.CookingStepInfo
 import com.example.foodrecipeapp.recipeDetail.components.IngredientsInfo
 
 import com.example.foodrecipeapp.recipeDetail.components.RecipeInfoCard
+import com.example.foodrecipeapp.recipeDetail.components.StartCookingInfo
 import com.example.foodrecipeapp.recipeDetail.presentation.viewmodel.RecipeViewModel
 import com.example.foodrecipeapp.ui.theme.Padding
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RecipeDetailPage(
+    name : String,
     recipeViewModel: RecipeViewModel = koinViewModel(),
     modifier: Modifier = Modifier
 ){
@@ -30,6 +32,12 @@ fun RecipeDetailPage(
         RecipeInfoCard()
         IngredientsInfo()
         CookingStepInfo()
+        StartCookingInfo(
+            modifier = Modifier,
+            numberOfStep = 3,
+            preparationTime = 35,
+            recipeViewModel = recipeViewModel
+        )
 
 
     }

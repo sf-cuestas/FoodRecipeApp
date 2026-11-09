@@ -46,7 +46,7 @@ fun RecipeInfoCard() {
             FoodCardBackground(
                 modifier = Modifier.height(256.dp),
                 recipeSubtitle = "RUSTIC MEDITERRANEAN",
-                recipeTitle = "Creamy Tuscan Garlic Sun-Dried\nTomato Salmon",
+                recipeTitle = "Creamy Tuscan Garlic Sun-Dried Tomato Salmon",
                 preparationTime = 35
             )
             CarouselInfo()
