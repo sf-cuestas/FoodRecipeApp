@@ -51,7 +51,7 @@ fun IngredientsCheck(
     Row(
         modifier = Modifier
             .background(
-                color = Color.LightGray,
+                color = ColorTheme.SecondBackground,
                 shape = RoundedCornerShape(12.dp)
             )
             .fillMaxWidth()
@@ -71,7 +71,7 @@ fun IngredientsCheck(
                     ColorTheme.Secondary
 
                 } else{
-                    Color.Gray
+                    Color.White
                 })
         )
 
