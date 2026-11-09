@@ -43,20 +43,16 @@ fun Badge(
                     contentDescription = null
                 )
             }
-
             Text(
                 modifier = Modifier.padding(horizontal = Padding.m, vertical = Padding.s),
                 text = text,
-                color = Color.Black
+                color = Color.Black,
+                style = TextStyleTheme.paragraphTextStyle,
+                maxLines = 1
             )
+
         }
-        Text(
-            modifier = Modifier.padding(horizontal = Padding.m, vertical = Padding.s),
-            text = text,
-            color = Color.Black,
-            style = TextStyleTheme.paragraphTextStyle,
-            maxLines = 1
-        )
+
     }
 
 }
