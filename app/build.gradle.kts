@@ -31,7 +31,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         val clientId = getEnvProperty("RECIPE_API_KEY")
+        val secretClientId = getEnvProperty("FATSECRET_SECRET_CLIENT_ID")
+        val publicClientId = getEnvProperty("FATSECRET_PUBLIC_CLIENT_ID")
         buildConfigField("String", "RECIPE_API_KEY", "\"$clientId\"")
+        buildConfigField("String", "FATSECRET_SECRET_CLIENT_ID", "\"$secretClientId\"")
+        buildConfigField("String", "FATSECRET_PUBLIC_CLIENT_ID", "\"$publicClientId\"")
     }
 
     buildTypes {
@@ -68,6 +72,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.retrofit)
+    implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.timber)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.rxjava3)
     implementation(libs.converter.gson)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

@@ -1,5 +1,7 @@
 package com.example.foodrecipeapp.home.domain
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.foodrecipeapp.api.data.AuthenticationResponse
 import com.example.foodrecipeapp.authentication.data.AuthenticationRepository
 import com.example.foodrecipeapp.home.data.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,13 +16,38 @@ class HomeController(
     val homeControllerState = _homeControllerState.asStateFlow()
 
     suspend fun getRecipes() {
-        val result = homeRepository.getRecipes()
         _homeControllerState.update { state ->
             state.copy(isLoading = true)
         }
+        if (!homeControllerState.value.isTokenValid) {
+            val result = getAccessToken()
+            result.fold(
+                onSuccess = {
+                    _homeControllerState.update { state ->
+                        state.copy(isLoading = false)
+                    }
+                    fetchRecipes()
+                },
+                onFailure = {
+                    _homeControllerState.update { state ->
+                        state.copy(isLoading = false, error = true)
+                    }
+                }
+            )
+        } else {
+            fetchRecipes()
+        }
+    }
+
+    private suspend fun fetchRecipes() {
+        _homeControllerState.update { state ->
+            state.copy(isLoading = true)
+        }
+        val result = homeRepository.getRecipes()
+
         _homeControllerState.update { state ->
             result.fold(
-                onSuccess = { data->
+                onSuccess = { data ->
                     state.copy(recipes = data.data, isLoading = false)
                 },
                 onFailure = {
@@ -30,11 +57,6 @@ class HomeController(
         }
     }
 
-    suspend fun getAccessToken() {
-        val result = authenticationRepository.getAccessToken()
-        result.fold(
-            onSuccess = {},
-            onFailure = {}
-        )
-    }
+    suspend fun getAccessToken(): Result<AuthenticationResponse> =
+        authenticationRepository.fetchAccessToken()
 }

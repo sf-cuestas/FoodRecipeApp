@@ -16,6 +16,7 @@ class HomeViewModel(val homeController: HomeController) : ViewModel() {
     fun getRecipes() {
         viewModelScope.launch {
             homeController.getRecipes()
+            homeController.getAccessToken()
         }
     }
 }

@@ -1,0 +1,5 @@
+package com.example.foodrecipeapp.authentication.domain
+
+import com.example.foodrecipeapp.authentication.data.AuthenticationRepository
+
+class AuthenticationController(val authenticationRepository: AuthenticationRepository)
