@@ -1,7 +1,5 @@
 package com.example.foodrecipeapp.home.domain
 
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.foodrecipeapp.api.data.AuthenticationResponse
 import com.example.foodrecipeapp.authentication.data.AuthenticationRepository
 import com.example.foodrecipeapp.home.data.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,49 +12,35 @@ class HomeController(
 ) {
     private val _homeControllerState = MutableStateFlow(HomeControllerState())
     val homeControllerState = _homeControllerState.asStateFlow()
-
     suspend fun getRecipes() {
         _homeControllerState.update { state ->
             state.copy(isLoading = true)
         }
-        if (!homeControllerState.value.isTokenValid) {
-            val result = getAccessToken()
-            result.fold(
-                onSuccess = {
-                    _homeControllerState.update { state ->
-                        state.copy(isLoading = false)
-                    }
-                    fetchRecipes()
-                },
-                onFailure = {
-                    _homeControllerState.update { state ->
+        getAccessToken().onSuccess { token ->
+
+            val result = homeRepository.getRecipes(token)
+            _homeControllerState.update { state ->
+                result.fold(
+                    onSuccess = { data ->
+                        state.copy(recipes = data.data, isLoading = false)
+                    },
+                    onFailure = {
                         state.copy(isLoading = false, error = true)
                     }
-                }
-            )
-        } else {
-            fetchRecipes()
+                )
+            }
         }
     }
 
-    private suspend fun fetchRecipes() {
-        _homeControllerState.update { state ->
-            state.copy(isLoading = true)
+    suspend fun getAccessToken(): Result<String> {
+        val token = authenticationRepository.getToken()
+        if (token.isValid()) {
+            return Result.success(token.accessToken)
         }
-        val result = homeRepository.getRecipes()
-
-        _homeControllerState.update { state ->
-            result.fold(
-                onSuccess = { data ->
-                    state.copy(recipes = data.data, isLoading = false)
-                },
-                onFailure = {
-                    state.copy(isLoading = false, error = true)
-                }
-            )
-        }
+        return authenticationRepository.fetchAccessToken().fold(
+            onSuccess = { response -> Result.success(response.access_token) },
+            onFailure = { Result.success("") }
+        )
     }
 
-    suspend fun getAccessToken(): Result<AuthenticationResponse> =
-        authenticationRepository.fetchAccessToken()
 }

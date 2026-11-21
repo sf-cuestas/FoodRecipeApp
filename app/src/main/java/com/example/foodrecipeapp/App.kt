@@ -1,6 +1,8 @@
 package com.example.foodrecipeapp
 
 import android.app.Application
+import android.content.Context
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.foodrecipeapp.api.AuthenticationNetworkModule
 import com.example.foodrecipeapp.api.NetworkModule
 import com.example.foodrecipeapp.authentication.injection.AuthenticationModule
@@ -10,6 +12,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 
+val Context.dataStore by preferencesDataStore(name = "appData")
 class App : Application(), KoinComponent {
     override fun onCreate() {
         super.onCreate()
