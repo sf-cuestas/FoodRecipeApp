@@ -19,7 +19,9 @@ fun getEnvProperty(key: String): String {
 android {
     namespace = "com.example.foodrecipeapp"
     compileSdk {
-        version = release(37)
+        version = release(37) {
+            minorApiLevel = 1
+        }
     }
 
     defaultConfig {
