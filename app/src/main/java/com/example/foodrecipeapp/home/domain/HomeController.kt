@@ -12,25 +12,24 @@ class HomeController(
 ) {
     private val _homeControllerState = MutableStateFlow(HomeControllerState())
     val homeControllerState = _homeControllerState.asStateFlow()
-    suspend fun getRecipes() {
-        _homeControllerState.update { state ->
-            state.copy(isLoading = true)
-        }
+    suspend fun getRecipes(): Result<Unit> =
         getAccessToken().onSuccess { token ->
+            _homeControllerState.update { state ->
+                state.copy(isLoading = true)
+            }
 
             val result = homeRepository.getRecipes(token)
             _homeControllerState.update { state ->
                 result.fold(
                     onSuccess = { data ->
-                        state.copy(recipes = data.data, isLoading = false)
+                        state.copy(recipes = data.recipes.recipe, isLoading = false)
                     },
                     onFailure = {
                         state.copy(isLoading = false, error = true)
                     }
                 )
             }
-        }
-    }
+        }.map {}
 
     suspend fun getAccessToken(): Result<String> {
         val token = authenticationRepository.getToken()

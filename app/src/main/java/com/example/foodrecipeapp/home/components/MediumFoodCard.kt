@@ -21,7 +21,7 @@ import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable
-fun MediumFoodCard(modifier: Modifier = Modifier) {
+fun MediumFoodCard(modifier: Modifier = Modifier, title: String?, description: String?) {
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
@@ -46,24 +46,29 @@ fun MediumFoodCard(modifier: Modifier = Modifier) {
                 rating = 4.9f,
                 difficultyLevel = "Medium skill"
             )
-            Text(
-                modifier = Modifier
-                    .padding(Padding.m)
-                    .fillMaxWidth(),
-                text = "Crispy Honey Soy Tofu Bowls",
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                style = TextStyleTheme.titleTextStyle
-            )
-            Text(
-                modifier = Modifier
-                    .padding(vertical = Padding.s, horizontal = Padding.m)
-                    .fillMaxWidth(),
-                text = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato",
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                style = TextStyleTheme.paragraphTextStyle
-            )
+            title?.let {
+                Text(
+                    modifier = Modifier
+                        .padding(Padding.m)
+                        .fillMaxWidth(),
+                    text = it,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = TextStyleTheme.titleTextStyle
+                )
+            }
+            description?.let {
+                Text(
+                    modifier = Modifier
+                        .padding(vertical = Padding.s, horizontal = Padding.m)
+                        .fillMaxWidth(),
+                    text = it,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = TextStyleTheme.paragraphTextStyle
+                )
+            }
+
         }
     }
 }
@@ -72,6 +77,9 @@ fun MediumFoodCard(modifier: Modifier = Modifier) {
 @Composable
 private fun MediumFoodCardPreview() {
     FoodRecipeAppTheme {
-        MediumFoodCard()
+        MediumFoodCard(
+            title = "Crispy Honey Soy Tofu Bowls",
+            description = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato"
+        )
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,9 +25,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.app.components.Badge
 import com.example.foodrecipeapp.app.components.SearchBar
+import com.example.foodrecipeapp.app.data.Recipe
 import com.example.foodrecipeapp.home.components.BigFoodCard
 import com.example.foodrecipeapp.home.components.MediumFoodCard
 import com.example.foodrecipeapp.home.components.SmallFoodCard
@@ -44,6 +47,10 @@ fun HomePage(
     homeViewModel: HomeViewModel = koinViewModel(),
     navigateToRecipeDetail: (id: String) -> Unit,
 ) {
+    LaunchedEffect(Unit) {
+        homeViewModel.getRecipes()
+    }
+    val uiState = homeViewModel.uiState.collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .padding(horizontal = Padding.l)
@@ -104,10 +111,13 @@ fun HomePage(
                     style = TextStyleTheme.paragraphTextStyle.copy(color = ColorTheme.Neutral)
                 )
             }
-            BigFoodCard("Marco", onClickButton = {navigateToRecipeDetail("sdfsd")})
+            BigFoodCard("Marco", onClickButton = { navigateToRecipeDetail("sdfsd") })
         }
 
-        QuickRecipes()
+        uiState.value.recipes?.let {
+            QuickRecipes(it)
+        }
+
 
         TrendingRecipes()
 
@@ -125,7 +135,7 @@ fun HomePage(
 }
 
 @Composable
-private fun QuickRecipes() {
+private fun QuickRecipes(recipes: List<Recipe>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
@@ -155,14 +165,12 @@ private fun QuickRecipes() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(Padding.m)
         ) {
-            item {
-                MediumFoodCard(modifier = Modifier.width(256.dp))
-            }
-            item {
-                MediumFoodCard(modifier = Modifier.width(256.dp))
-            }
-            item {
-                MediumFoodCard(modifier = Modifier.width(256.dp))
+            items(recipes) { recipe ->
+                MediumFoodCard(
+                    modifier = Modifier.width(256.dp),
+                    title = recipe.recipe_name,
+                    description = recipe.recipe_description
+                )
             }
         }
     }
@@ -170,7 +178,9 @@ private fun QuickRecipes() {
 
 @Composable
 private fun TrendingRecipes() {
-    Column(modifier = Modifier.fillMaxWidth().padding(vertical = Padding.m)) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(vertical = Padding.m)) {
         Row(
             modifier = Modifier
                 .padding(bottom = Padding.m)
