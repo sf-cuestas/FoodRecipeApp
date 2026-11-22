@@ -21,7 +21,12 @@ import com.example.foodrecipeapp.ui.theme.TextStyleTheme
 import com.example.foodrecipeapp.ui.theme.FoodRecipeAppTheme
 
 @Composable
-fun MediumFoodCard(modifier: Modifier = Modifier, title: String?, description: String?) {
+fun MediumFoodCard(
+    modifier: Modifier = Modifier,
+    title: String?,
+    description: String?,
+    imageUrl: String?,
+) {
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
@@ -37,7 +42,8 @@ fun MediumFoodCard(modifier: Modifier = Modifier, title: String?, description: S
                 modifier = Modifier
                     .height(144.dp)
                     .fillMaxWidth(),
-                preparationTime = 35
+                preparationTime = 35,
+                imageUrl = imageUrl
             )
             GeneralRecipeInfo(
                 modifier = Modifier
@@ -79,7 +85,8 @@ private fun MediumFoodCardPreview() {
     FoodRecipeAppTheme {
         MediumFoodCard(
             title = "Crispy Honey Soy Tofu Bowls",
-            description = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato"
+            description = "Crispy pan-seared wild salmon tucked into a velvety parmesan, sweet garlic, and tart sun-dried tomato",
+            imageUrl = null
         )
     }
 }

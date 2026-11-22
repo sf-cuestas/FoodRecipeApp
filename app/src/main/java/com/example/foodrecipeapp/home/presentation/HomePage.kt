@@ -169,7 +169,8 @@ private fun QuickRecipes(recipes: List<Recipe>) {
                 MediumFoodCard(
                     modifier = Modifier.width(256.dp),
                     title = recipe.recipe_name,
-                    description = recipe.recipe_description
+                    description = recipe.recipe_description,
+                    imageUrl = recipe.recipe_image
                 )
             }
         }
@@ -178,9 +179,11 @@ private fun QuickRecipes(recipes: List<Recipe>) {
 
 @Composable
 private fun TrendingRecipes() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(vertical = Padding.m)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = Padding.m)
+    ) {
         Row(
             modifier = Modifier
                 .padding(bottom = Padding.m)

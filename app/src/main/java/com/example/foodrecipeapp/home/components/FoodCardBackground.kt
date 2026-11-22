@@ -17,8 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import coil3.compose.AsyncImage
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.ui.theme.Padding
 import com.example.foodrecipeapp.ui.theme.TextStyleTheme
@@ -30,17 +30,20 @@ fun FoodCardBackground(
     modifier: Modifier = Modifier,
     recipeTitle: String? = null,
     recipeSubtitle: String? = null,
+    imageUrl: String? = null,
     preparationTime: Int? = null,
     showSaveButton: Boolean = true
 ) {
     var isSelected by remember { mutableStateOf(true) }
     Box(modifier = modifier.fillMaxWidth()) {
-        Image(
+
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = "Food photo",
             modifier = Modifier.fillMaxWidth(),
-            painter = painterResource(R.drawable.background_test),
             contentScale = ContentScale.FillBounds,
-            contentDescription = null
         )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -53,7 +56,7 @@ fun FoodCardBackground(
                     backgroundColor = Color.White
                 )
             }
-            if (showSaveButton){
+            if (showSaveButton) {
                 SaveButton(isSelected = isSelected, onClick = { isSelected = !isSelected })
             }
         }
